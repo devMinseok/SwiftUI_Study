@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F24CA8CC259DD9D200512794 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24CA8CB259DD9D200512794 /* MemoCell.swift */; };
+		F24CA8D2259DE07500512794 /* ComposeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24CA8D1259DE07500512794 /* ComposeScene.swift */; };
 		F2A09F2F2467BC4B005B9D9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */; };
 		F2A09F312467BC4B005B9D9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F302467BC4B005B9D9C /* SceneDelegate.swift */; };
 		F2A09F342467BC4B005B9D9C /* SwiftUIMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F322467BC4B005B9D9C /* SwiftUIMemo.xcdatamodeld */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		F24CA8CB259DD9D200512794 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
+		F24CA8D1259DE07500512794 /* ComposeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ComposeScene.swift; path = ../../../../Documents/ComposeScene.swift; sourceTree = "<group>"; };
 		F2A09F2B2467BC4B005B9D9C /* SwiftUIMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2A09F302467BC4B005B9D9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		F24CA8D0259DE04400512794 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				F24CA8CA259DD9C700512794 /* View */,
+				F2A09F352467BC4B005B9D9C /* MemoListScene.swift */,
+				F24CA8D1259DE07500512794 /* ComposeScene.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		F2A09F222467BC4B005B9D9C = {
 			isa = PBXGroup;
 			children = (
@@ -74,12 +86,11 @@
 		F2A09F2D2467BC4B005B9D9C /* SwiftUIMemo */ = {
 			isa = PBXGroup;
 			children = (
-				F24CA8CA259DD9C700512794 /* View */,
+				F24CA8D0259DE04400512794 /* Scene */,
 				F2A09F4A2467D57F005B9D9C /* Extension */,
 				F2A09F452467C1BD005B9D9C /* Model */,
 				F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */,
 				F2A09F302467BC4B005B9D9C /* SceneDelegate.swift */,
-				F2A09F352467BC4B005B9D9C /* MemoListScene.swift */,
 				F2A09F372467BC4C005B9D9C /* Assets.xcassets */,
 				F2A09F3C2467BC4C005B9D9C /* LaunchScreen.storyboard */,
 				F2A09F3F2467BC4C005B9D9C /* Info.plist */,
@@ -193,6 +204,7 @@
 				F2A09F312467BC4B005B9D9C /* SceneDelegate.swift in Sources */,
 				F2A09F472467C1D3005B9D9C /* Memo.swift in Sources */,
 				F24CA8CC259DD9D200512794 /* MemoCell.swift in Sources */,
+				F24CA8D2259DE07500512794 /* ComposeScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
