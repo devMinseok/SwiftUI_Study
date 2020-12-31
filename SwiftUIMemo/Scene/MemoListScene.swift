@@ -22,6 +22,7 @@ struct MemoListScene: View {
             .navigationBarItems(trailing: ModalButton(show: $showComposer))
             .sheet(isPresented: $showComposer, content: {
                 ComposeScene(showComposer: $showComposer)
+                    .environmentObject(self.store)
             })
         }
     }
