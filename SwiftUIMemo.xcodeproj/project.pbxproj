@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F2385DA4259DEF6C0029DFB0 /* ComposeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DA3259DEF6C0029DFB0 /* ComposeScene.swift */; };
+		F2385DA8259F35DC0029DFB0 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DA7259F35DC0029DFB0 /* TextView.swift */; };
 		F24CA8CC259DD9D200512794 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24CA8CB259DD9D200512794 /* MemoCell.swift */; };
 		F2A09F2F2467BC4B005B9D9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */; };
 		F2A09F312467BC4B005B9D9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F302467BC4B005B9D9C /* SceneDelegate.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		F2385DA3259DEF6C0029DFB0 /* ComposeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeScene.swift; sourceTree = "<group>"; };
+		F2385DA7259F35DC0029DFB0 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		F24CA8CB259DD9D200512794 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		F2A09F2B2467BC4B005B9D9C /* SwiftUIMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				F24CA8CB259DD9D200512794 /* MemoCell.swift */,
+				F2385DA7259F35DC0029DFB0 /* TextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				F2A09F472467C1D3005B9D9C /* Memo.swift in Sources */,
 				F24CA8CC259DD9D200512794 /* MemoCell.swift in Sources */,
 				F2385DA4259DEF6C0029DFB0 /* ComposeScene.swift in Sources */,
+				F2385DA8259F35DC0029DFB0 /* TextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
