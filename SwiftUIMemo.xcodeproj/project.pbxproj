@@ -10,6 +10,7 @@
 		F2385DA4259DEF6C0029DFB0 /* ComposeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DA3259DEF6C0029DFB0 /* ComposeScene.swift */; };
 		F2385DA8259F35DC0029DFB0 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DA7259F35DC0029DFB0 /* TextView.swift */; };
 		F2385DAC259F3AFF0029DFB0 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DAB259F3AFF0029DFB0 /* KeyboardObserver.swift */; };
+		F2385DB0259F44CE0029DFB0 /* DetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DAF259F44CE0029DFB0 /* DetailScene.swift */; };
 		F24CA8CC259DD9D200512794 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24CA8CB259DD9D200512794 /* MemoCell.swift */; };
 		F2A09F2F2467BC4B005B9D9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */; };
 		F2A09F312467BC4B005B9D9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F302467BC4B005B9D9C /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 		F2385DA3259DEF6C0029DFB0 /* ComposeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeScene.swift; sourceTree = "<group>"; };
 		F2385DA7259F35DC0029DFB0 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		F2385DAB259F3AFF0029DFB0 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		F2385DAF259F44CE0029DFB0 /* DetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScene.swift; sourceTree = "<group>"; };
 		F24CA8CB259DD9D200512794 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		F2A09F2B2467BC4B005B9D9C /* SwiftUIMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				F24CA8CA259DD9C700512794 /* View */,
 				F2A09F352467BC4B005B9D9C /* MemoListScene.swift */,
 				F2385DA3259DEF6C0029DFB0 /* ComposeScene.swift */,
+				F2385DAF259F44CE0029DFB0 /* DetailScene.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				F2385DAC259F3AFF0029DFB0 /* KeyboardObserver.swift in Sources */,
 				F2A09F2F2467BC4B005B9D9C /* AppDelegate.swift in Sources */,
 				F2A09F4C2467D5CB005B9D9C /* DateFormatter+Memo.swift in Sources */,
+				F2385DB0259F44CE0029DFB0 /* DetailScene.swift in Sources */,
 				F2A09F362467BC4B005B9D9C /* MemoListScene.swift in Sources */,
 				F2A09F312467BC4B005B9D9C /* SceneDelegate.swift in Sources */,
 				F2A09F472467C1D3005B9D9C /* Memo.swift in Sources */,
