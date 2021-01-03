@@ -11,6 +11,8 @@
 		F2385DA8259F35DC0029DFB0 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DA7259F35DC0029DFB0 /* TextView.swift */; };
 		F2385DAC259F3AFF0029DFB0 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DAB259F3AFF0029DFB0 /* KeyboardObserver.swift */; };
 		F2385DB0259F44CE0029DFB0 /* DetailScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DAF259F44CE0029DFB0 /* DetailScene.swift */; };
+		F2385DB525A0C2B70029DFB0 /* MemoEntity+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DB425A0C2B70029DFB0 /* MemoEntity+Identifiable.swift */; };
+		F2385DB825A0C3220029DFB0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2385DB725A0C3220029DFB0 /* CoreDataManager.swift */; };
 		F24CA8CC259DD9D200512794 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24CA8CB259DD9D200512794 /* MemoCell.swift */; };
 		F2A09F2F2467BC4B005B9D9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */; };
 		F2A09F312467BC4B005B9D9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A09F302467BC4B005B9D9C /* SceneDelegate.swift */; };
@@ -29,6 +31,8 @@
 		F2385DA7259F35DC0029DFB0 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		F2385DAB259F3AFF0029DFB0 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		F2385DAF259F44CE0029DFB0 /* DetailScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScene.swift; sourceTree = "<group>"; };
+		F2385DB425A0C2B70029DFB0 /* MemoEntity+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoEntity+Identifiable.swift"; sourceTree = "<group>"; };
+		F2385DB725A0C3220029DFB0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F24CA8CB259DD9D200512794 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		F2A09F2B2467BC4B005B9D9C /* SwiftUIMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A09F2E2467BC4B005B9D9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,16 @@
 				F2385DAB259F3AFF0029DFB0 /* KeyboardObserver.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		F2385DB225A0C1470029DFB0 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				F2A09F322467BC4B005B9D9C /* SwiftUIMemo.xcdatamodeld */,
+				F2385DB425A0C2B70029DFB0 /* MemoEntity+Identifiable.swift */,
+				F2385DB725A0C3220029DFB0 /* CoreDataManager.swift */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		F24CA8CA259DD9C700512794 /* View */ = {
@@ -102,6 +116,7 @@
 		F2A09F2D2467BC4B005B9D9C /* SwiftUIMemo */ = {
 			isa = PBXGroup;
 			children = (
+				F2385DB225A0C1470029DFB0 /* DB */,
 				F2385DAA259F3AEB0029DFB0 /* Shared */,
 				F24CA8D0259DE04400512794 /* Scene */,
 				F2A09F4A2467D57F005B9D9C /* Extension */,
@@ -111,7 +126,6 @@
 				F2A09F372467BC4C005B9D9C /* Assets.xcassets */,
 				F2A09F3C2467BC4C005B9D9C /* LaunchScreen.storyboard */,
 				F2A09F3F2467BC4C005B9D9C /* Info.plist */,
-				F2A09F322467BC4B005B9D9C /* SwiftUIMemo.xcdatamodeld */,
 				F2A09F392467BC4C005B9D9C /* Preview Content */,
 			);
 			path = SwiftUIMemo;
@@ -225,6 +239,8 @@
 				F24CA8CC259DD9D200512794 /* MemoCell.swift in Sources */,
 				F2385DA4259DEF6C0029DFB0 /* ComposeScene.swift in Sources */,
 				F2385DA8259F35DC0029DFB0 /* TextView.swift in Sources */,
+				F2385DB825A0C3220029DFB0 /* CoreDataManager.swift in Sources */,
+				F2385DB525A0C2B70029DFB0 /* MemoEntity+Identifiable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
