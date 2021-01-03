@@ -9,14 +9,18 @@
 import SwiftUI
 
 struct MemoListScene: View {
-    @EnvironmentObject var store: MemoStore
+    @EnvironmentObject var store: CoreDataManager
     
     @State var showComposer: Bool = false
+    
+    @FetchRequest(entity: MemoEntity.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \MemoEntity.insertDate, ascending: false)])
+    var memoList: FetchedResults<MemoEntity>
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(store.list) { memo in
+                ForEach(memoList) { memo in
                     NavigationLink(
                         destination: DetailScene(memo: memo),
                         label: {
@@ -24,7 +28,7 @@ struct MemoListScene: View {
                         })
                 }
                 .onDelete(perform: { indexSet in
-                    store.delete(set: indexSet)
+                    delete(set: indexSet)
                 })
             }
             .navigationBarTitle("내 메모")
@@ -34,6 +38,12 @@ struct MemoListScene: View {
                     .environmentObject(self.store)
                     .environmentObject(KeyboardObserver())
             })
+        }
+    }
+    
+    func delete(set: IndexSet) {
+        for index in set {
+            store.delete(memo: memoList[index])
         }
     }
 }
@@ -53,7 +63,7 @@ fileprivate struct ModalButton: View {
 struct MemoListScene_Previews: PreviewProvider {
     static var previews: some View {
         MemoListScene()
-            .environmentObject(MemoStore())
+            .environmentObject(CoreDataManager.shared)
             .environmentObject(DateFormatter.memoDateFormatter)
     }
 }
