@@ -24,23 +24,37 @@
 import SwiftUI
 
 struct View_Toggle: View {
-   @State private var isOn = false
-   
-   var body: some View {
-      VStack(alignment: .center, spacing: 30) {
-         Image(systemName: isOn ? "lightbulb.fill" : "lightbulb")
-            .resizable()
-            .foregroundColor(isOn ? .yellow : .gray)
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 300, height: 300)
-         
-         // #1
-      }
-   }
+    @State private var isOn = false
+    
+    var body: some View {
+        VStack(alignment: .center, spacing: 30) {
+            Image(systemName: isOn ? "lightbulb.fill" : "lightbulb")
+                .resizable()
+                .foregroundColor(isOn ? .yellow : .gray)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 300, height: 300)
+            
+            // #1
+            //        Toggle("Toggle Switch", isOn: $isOn)
+            //        Toggle(isOn: $isOn, label: {
+            //            Image(systemName: "bolt.circle.fill")
+            //            Text("Toggle Switch")
+            //        })
+            VStack(spacing: 30) {
+                Toggle(isOn: $isOn, label: {
+                    Text("Toggle Switch")
+                })
+                .labelsHidden()
+//                .padding()
+                
+                Text("Toggle Switch")
+            }
+        }
+    }
 }
 
 struct View_Toggle_Previews: PreviewProvider {
-   static var previews: some View {
-      View_Toggle()
-   }
+    static var previews: some View {
+        View_Toggle()
+    }
 }
