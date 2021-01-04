@@ -24,47 +24,50 @@
 import SwiftUI
 
 struct View_DatePickerStyle: View {
-   
-   @State private var selectedDate = Date()
-   
-   var body: some View {
-      VStack {
-         Text("DatePicker Styles")
-            .font(.largeTitle)
-         
-         Spacer()
-         
-         Text("Date + Time")
-            .font(.title)
-         
-         // #1
-         
-         
-         
-         Spacer()
-         
-         Text("Date Only")
-            .font(.title)
-         
-         // #2
-         
-         
-         Spacer()
-         
-         Text("Time Only")
-            .font(.title)
-         
-         // #3
-         
-         
-         
-         
-      }
-   }
+    
+    @State private var selectedDate = Date()
+    
+    var body: some View {
+        VStack {
+            Text("DatePicker Styles")
+                .font(.largeTitle)
+            
+            Spacer()
+            
+            Text("Date + Time")
+                .font(.title)
+            
+            // #1
+            DatePicker("", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
+                .datePickerStyle(WheelDatePickerStyle())
+                .labelsHidden()
+            
+            
+            Spacer()
+            
+            Text("Date Only")
+                .font(.title)
+            
+            // #2
+            DatePicker("", selection: $selectedDate, displayedComponents: .date)
+                .datePickerStyle(WheelDatePickerStyle())
+                .labelsHidden()
+            
+            Spacer()
+            
+            Text("Time Only")
+                .font(.title)
+            
+            // #3
+            DatePicker("", selection: $selectedDate, displayedComponents: .hourAndMinute)
+                .datePickerStyle(WheelDatePickerStyle())
+                .labelsHidden()            
+        }
+    }
 }
 
 struct View_DatePickerStyle_Previews: PreviewProvider {
-   static var previews: some View {
-      View_DatePickerStyle()
-   }
+    static var previews: some View {
+        View_DatePickerStyle()
+    }
 }
