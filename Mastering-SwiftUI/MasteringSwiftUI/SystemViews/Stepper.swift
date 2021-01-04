@@ -31,7 +31,26 @@ struct View_Stepper: View {
          Text("\(quantity)")
             .font(.system(size: 150))
          
-         // #1
+//      #1
+        Stepper("Qty", value: $quantity, in: 0...100, step: 1, onEditingChanged: {
+            print($0)
+        })
+        
+        Stepper("Qty", value: $quantity)
+            .padding()
+        
+        Stepper("Qty") {
+            self.quantity += 1
+        } onDecrement: {
+            self.quantity -= 1
+        }
+        .padding()
+        
+        Stepper("Qty", value: $quantity)
+            .padding()
+            .labelsHidden()
+        
+        
       }
    }
 }
