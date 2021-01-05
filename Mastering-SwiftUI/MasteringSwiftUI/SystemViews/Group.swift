@@ -24,13 +24,35 @@
 import SwiftUI
 
 struct View_Group: View {
-   var body: some View {
-      Text("Hello, World!")
-   }
+    var body: some View {
+        // 최대 10개까지만 가능
+        VStack {
+            Text("Hello, World!")
+            Text("Hello, World!")
+            Text("Hello, World!")
+            Text("Hello, World!")
+            Text("Hello, World!")
+            Text("Hello, World!")
+            Text("Hello, World!")
+            Text("Hello, World!")
+            Text("Hello, World!")
+            
+            // 마찬가지로 최대 10개까지만 가능
+            Group {
+                Text("Hello, World!")
+                Text("Hello, World!")
+                Text("Hello, World!")
+                Text("Hello, World!")
+                Text("Hello, World!")
+                Text("Hello, World!")
+                Text("Hello, World!")
+            }
+        }
+    }
 }
 
 struct View_Group_Previews: PreviewProvider {
-   static var previews: some View {
-      View_Group()
-   }
+    static var previews: some View {
+        View_Group()
+    }
 }
