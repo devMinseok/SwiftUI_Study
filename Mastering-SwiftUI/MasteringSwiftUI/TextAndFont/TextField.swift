@@ -24,30 +24,45 @@
 import SwiftUI
 
 struct View_TextField: View {
-      
-   @State private var name: String = ""
-   @State private var password: String = ""
-   
-   var body: some View {
-      VStack {
-         Text("TextField")
-            .font(.largeTitle)
-         
-         Text("input: \(name)")
-            .font(.title)
-            .foregroundColor(.secondary)
-         
-         //
-         
-         
-         
-         Spacer()
-      }
-   }
+    
+    @State private var name: String = ""
+    @State private var password: String = ""
+    
+    var body: some View {
+        VStack {
+            Text("TextField")
+                .font(.largeTitle)
+            
+            Text("input: \(name)")
+                .font(.title)
+                .foregroundColor(.secondary)
+            
+//            TextField("Input Name", text: $name) {
+//                print($0)
+//            } onCommit: {
+//                print("onCommit")
+//            }
+            
+            TextField("Input Name", text: $name)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(.title)
+//                .keyboardType(.numberPad)
+//                .textContentType(.username)
+//                .autocapitalization(.none)
+//                .disableAutocorrection(true)
+
+            SecureField("Input Password", text: $password)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Spacer()
+        }
+    }
 }
 
 struct View_TextField_Previews: PreviewProvider {
-   static var previews: some View {
-      View_TextField()
-   }
+    static var previews: some View {
+        View_TextField()
+    }
 }
