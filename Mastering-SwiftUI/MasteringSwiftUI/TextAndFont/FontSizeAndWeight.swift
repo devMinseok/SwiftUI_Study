@@ -24,43 +24,46 @@
 import SwiftUI
 
 struct FontSizeAndWeight: View {
-   var body: some View {
-      VStack(spacing: 20) {
-         Text("50pt Font")
+    var body: some View {
+        VStack(spacing: 20) {
+            // 폰트 사이즈만 설정
+            Text("50pt Font")
+                .font(.system(size: 50))
             
-         
-         Text("Black")
+            // 폰트 사이즈와 굵기 설정
+            Text("Black")
+                .font(.system(size: 50, weight: .black))
             
-         
-         Text("Heavy")
+            Text("Heavy")
+                .font(.system(size: 50, weight: .heavy))
             
-         
-         Text("Bold")
-         
-         
-         Text("Semibold")
+            Text("Bold")
+                .font(.system(size: 50, weight: .bold))
             
-         
-         Text("Medium")
+            Text("Semibold")
+                .font(.system(size: 50, weight: .semibold))
             
-         
-         Text("Regular")
+            // 폰트 굵기만 설정
+            Text("Medium")
+                .fontWeight(.medium)
             
-         
-         Text("Light")
+            Text("Regular")
+                .fontWeight(.regular)
             
-         
-         Text("Thin")
+            Text("Light")
+                .fontWeight(.light)
             
-                  
-         Text("Ultra Light")
+            Text("Thin")
+                .fontWeight(.thin)
             
-      }      
-   }
+            Text("Ultra Light")
+                .fontWeight(.ultraLight)
+        }
+    }
 }
 
 struct FontSizeAndWeight_Previews: PreviewProvider {
-   static var previews: some View {
-      FontSizeAndWeight()
-   }
+    static var previews: some View {
+        FontSizeAndWeight()
+    }
 }
