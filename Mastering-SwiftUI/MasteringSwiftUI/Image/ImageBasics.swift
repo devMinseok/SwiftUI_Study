@@ -24,21 +24,37 @@
 import SwiftUI
 
 struct ImageBasics: View {
-   var body: some View {
-      VStack {
-         Text("Image")
-            .font(.title)
-         
-         //
-         
-         
-         Spacer()
-      }
-   }
+    var body: some View {
+        VStack {
+            Text("Image")
+                .font(.title)
+            
+            Image("swiftui-logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 200, height: 300)
+            
+            Image(systemName: "star")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 200, height: 300)
+                .foregroundColor(.yellow)
+            
+            HStack {
+                Image(systemName: "person.crop.circle")
+                
+                Text("Profile")
+            }
+            .font(.largeTitle)
+            .padding()
+            
+            Spacer()
+        }
+    }
 }
 
 struct ImageBasics_Previews: PreviewProvider {
-   static var previews: some View {
-      ImageBasics()
-   }
+    static var previews: some View {
+        ImageBasics()
+    }
 }
