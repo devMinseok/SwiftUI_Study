@@ -24,17 +24,26 @@
 import SwiftUI
 
 struct StaticList: View {
-   var body: some View {
-      VStack {
-         Text("Hello, World!")
-         Text("Hello, World!")
-         Text("Hello, World!")
-      }
-   }
+    var body: some View {
+        List {
+            HStack {
+                Text("Hello, World!")
+                Text("Hello, World!")
+            }
+            
+            Text("Hello, World!")
+            
+            Image(systemName: "star")
+            
+            Toggle(isOn: .constant(true), label: {
+                Text("Toggle")
+            })
+        }
+    }
 }
 
 struct StaticList_Previews: PreviewProvider {
-   static var previews: some View {
-      StaticList()
-   }
+    static var previews: some View {
+        StaticList()
+    }
 }
