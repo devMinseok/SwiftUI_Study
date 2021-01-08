@@ -24,20 +24,23 @@
 import SwiftUI
 
 struct DynamicIdentifiableList: View {
-   var items = AppleProduct.sampleList
-   
-   var body: some View {
-      VStack {
-         Text("Identifiable List")
-            .font(.largeTitle)
-         
-         
-      }
-   }
+    var items = AppleProduct.sampleList
+    
+    var body: some View {
+        VStack {
+            Text("Identifiable List")
+                .font(.largeTitle)
+            
+            // AppleProduct는 Identifiable을 채용하고 있기에 id파라미터를 전달하지 않아도 인스턴스를 구분할 수 있음
+            List(items) { item in
+                Text(item.name)
+            }
+        }
+    }
 }
 
 struct DynamicIdentifiableList_Previews: PreviewProvider {
-   static var previews: some View {
-      DynamicIdentifiableList()
-   }
+    static var previews: some View {
+        DynamicIdentifiableList()
+    }
 }
