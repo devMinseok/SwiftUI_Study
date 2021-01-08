@@ -24,41 +24,33 @@
 import SwiftUI
 
 struct EditMode: View {
-   @State private var items = AppleProduct.sampleList  // Stete 삭제
-   
-   var body: some View {
-      VStack {
-//         List(items) { item in
-//            Text(item.name)
-//         }
-         
-         List {
-            ForEach(items) { item in // List 안에 ForEach를 임베드 해야 함
-               Text(item.name)
+    @State private var items = AppleProduct.sampleList  // Stete 삭제
+    
+    var body: some View {
+        VStack {
+            List {
+                ForEach(items) { item in // List 안에 ForEach를 임베드 해야 함
+                    Text(item.name)
+                }
+                .onDelete { (rows) in
+                    self.items.remove(atOffsets: rows)
+                }
+                .onMove(perform: move)
             }
-            .onDelete(perform: { (rows) in
-               self.items.remove(atOffsets: rows)
-            })
-            .onMove(perform: move)
-         }
-      }
-      .navigationBarTitle("Edit Mode")
-         //
-      .navigationBarItems(trailing: EditButton())
-      //
-   }
-   
-   //
-   func move(from: IndexSet, to: Int) {
-      items.move(fromOffsets: from, toOffset: to)
-   }
-   //
+        }
+        .navigationBarTitle("Edit Mode")
+        .navigationBarItems(trailing: EditButton())
+    }
+    
+    func move(from: IndexSet, to: Int) {
+        items.move(fromOffsets: from, toOffset: to)
+    }
 }
 
 struct EditMode_Previews: PreviewProvider {
-   static var previews: some View {
-      NavigationView {
-         EditMode()
-      }
-   }
+    static var previews: some View {
+        NavigationView {
+            EditMode()
+        }
+    }
 }
