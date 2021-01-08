@@ -24,29 +24,34 @@
 import SwiftUI
 
 struct MultiSelection: View {
-   var items = AppleProduct.sampleList
-   
-   
-   var body: some View {
-      VStack {
-         Text("Managing Selection")
-            .font(.largeTitle)
-         
-         Text(" item(s) selected")
-            .font(.title)
-         
-         List(items) { item in
-            Text(item.name)
-         }
-      }
-      .navigationBarItems(trailing: EditButton())
-   }
+    var items = AppleProduct.sampleList
+    
+    @State private var selected: Set<AppleProduct> = []
+    
+    var body: some View {
+        VStack {
+            Text("Managing Selection")
+                .font(.largeTitle)
+            
+            Text("\(selected.count) item(s) selected")
+                .font(.title)
+            
+            List(items, id: \.self, selection: $selected) { item in
+                Button(action: {
+                    self.selected.insert(item)
+                }, label: {
+                    Text(item.name)
+                })
+            }
+        }
+        .navigationBarItems(trailing: EditButton())
+    }
 }
 
 struct MultiSelection_Previews: PreviewProvider {
-   static var previews: some View {
-      NavigationView {
-         MultiSelection()
-      }
-   }
+    static var previews: some View {
+        NavigationView {
+            MultiSelection()
+        }
+    }
 }

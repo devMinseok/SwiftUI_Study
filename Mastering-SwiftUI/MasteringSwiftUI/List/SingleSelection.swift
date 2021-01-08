@@ -24,23 +24,39 @@
 import SwiftUI
 
 struct SingleSelection: View {
-   var items = AppleProduct.sampleList
-   
-   
-   var body: some View {
-      VStack {
-         Text("Managing Selection")
-            .font(.largeTitle)
-         
-         
-      }
-   }
+    var items = AppleProduct.sampleList
+    
+    @State private var selected: AppleProduct? = nil
+    
+    var body: some View {
+        VStack {
+            Text("Managing Selection")
+                .font(.largeTitle)
+            
+            Text("Selected: \(selected?.name ?? "-")")
+                .font(.title)
+            
+            // 편집 모드에서는 selection 파라미터를 통해 State 변수를 Binding 함
+            // List가 인스턴스를 구분하기 위해 사용하는 형식과 State 변수의 형식이 일치해야함
+            // 위의 조건이 만족한다면 편집모드에서 선택한 항목을 자동으로 Binding 함
+            List(items, id: \.self, selection: $selected) { item in
+                Button(action: {
+                    // 일반 모드에서 단일모드를 처리할때는 State 변수에 선택한 항목을 직접 저장
+                    // 이 때는 List에서 selection 파라미터를 사용할 필요 없음
+                    self.selected = item
+                }, label: {
+                    Text(item.name)
+                })
+            }
+        }
+        .navigationBarItems(trailing: EditButton())
+    }
 }
 
 struct ManagingSelection_Previews: PreviewProvider {
-   static var previews: some View {
-      NavigationView {
-         SingleSelection()
-      }
-   }
+    static var previews: some View {
+        NavigationView {
+            SingleSelection()
+        }
+    }
 }
