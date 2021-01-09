@@ -24,22 +24,23 @@
 import SwiftUI
 
 struct View_ForEach: View {
-   var items = AppleProduct.sampleList
-   
-   var body: some View {
-      
-      VStack {
-         Text("ForEach")
-            .font(.largeTitle)
-         
-         //
-         
-      }
-   }
+    var items = AppleProduct.sampleList
+    
+    var body: some View {
+        
+        HStack {
+            Text("ForEach")
+                .font(.largeTitle)
+            
+            ForEach(items) { item in
+                Text(item.name)
+            }
+        }
+    }
 }
 
 struct View_ForEach_Previews: PreviewProvider {
-   static var previews: some View {
-      View_ForEach()
-   }
+    static var previews: some View {
+        View_ForEach()
+    }
 }

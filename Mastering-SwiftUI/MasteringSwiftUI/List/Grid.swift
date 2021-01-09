@@ -24,31 +24,30 @@
 import SwiftUI
 
 struct Grid: View {
-   var items = AppleProduct.sampleList
-   
-   var body: some View {
-      VStack {
-         Text("Grid")
-            .font(.largeTitle)
-         
-         //
-         VStack(spacing: 30) {
-            ForEach(0..<3) { row in
-               HStack(spacing: 30) {
-                  ForEach(0..<2) { col in
-                     GridItem(product: self.items[row * 3 + col])
-                        .frame(width: 150, height: 150)
-                  }
-               }
+    var items = AppleProduct.sampleList
+    
+    var body: some View {
+        VStack {
+            Text("Grid")
+                .font(.largeTitle)
+            
+            VStack(spacing: 30) {
+                ForEach(0..<3) { row in
+                    HStack(spacing: 30) {
+                        ForEach(0..<2) { col in
+                            GridItem(product: self.items[row * 3 + col])
+                                .frame(width: 150, height: 150)
+                                .background(Color.blue)
+                        }
+                    }
+                }
             }
-         }
-         //
-      }
-   }
+        }
+    }
 }
 
 struct Grid_Previews: PreviewProvider {
-   static var previews: some View {
-      Grid()
-   }
+    static var previews: some View {
+        Grid()
+    }
 }
