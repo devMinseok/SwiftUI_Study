@@ -24,29 +24,35 @@
 import SwiftUI
 
 struct Nav_Sheet: View {
-   @State private var statusMessage = ""
-   
-   
-   var body: some View {
-      VStack {
-         Text(statusMessage)
-            .font(.largeTitle)
-         
-         Button(action: {
+    @State private var statusMessage = ""
+    @State private var showSheet = false
+    
+    var body: some View {
+        VStack {
+            Text(statusMessage)
+                .font(.largeTitle)
             
-         }, label: {
-            Text("Show Sheet")
-         })
-         .padding()
-      }
-      .navigationBarTitle("Sheet")
-   }
+            Button(action: {
+                self.showSheet.toggle()
+            }, label: {
+                Text("Show Sheet")
+            })
+            .padding()
+            .sheet(isPresented: $showSheet, onDismiss: {
+                self.statusMessage = "Done"
+            }) {
+//                NumberScene(number: 0, color: Color.blue)
+                ColorScene(showSheet: self.$showSheet, color: .yellow)
+            }
+        }
+        .navigationBarTitle("Sheet")
+    }
 }
 
 struct Nav_Sheet_Previews: PreviewProvider {
-   static var previews: some View {
-      NavigationView {
-         Nav_Sheet()
-      }
-   }
+    static var previews: some View {
+        NavigationView {
+            Nav_Sheet()
+        }
+    }
 }
