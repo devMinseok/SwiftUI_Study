@@ -24,25 +24,27 @@
 import SwiftUI
 
 struct OneWayConnection: View {
-   let text: String = "Hello"
-   
-   var body: some View {
-      VStack(spacing: 70) {
-         Text(text)
-            .font(.largeTitle)
-         
-         Button(action: {
+    
+    // 상태를 관리하는 주체는 해당 View임. 그래서 외부에서 바로 접근할 수 없도록 보통 private로 선언함
+    @State private var text: String = "Hello"
+    
+    var body: some View {
+        VStack(spacing: 70) {
+            Text(text)
+                .font(.largeTitle)
             
-         }, label: {
-            Text("Update")
-         })
-         .padding()
-      }
-   }
+            Button(action: {
+                self.text = "SwiftUI"
+            }, label: {
+                Text("Update")
+            })
+            .padding()
+        }
+    }
 }
 
 struct OneWayBinding_Previews: PreviewProvider {
-   static var previews: some View {
-      OneWayConnection()
-   }
+    static var previews: some View {
+        OneWayConnection()
+    }
 }
