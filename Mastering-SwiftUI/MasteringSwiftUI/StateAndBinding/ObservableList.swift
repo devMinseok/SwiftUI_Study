@@ -23,37 +23,52 @@
 
 import SwiftUI
 
+// ObservableObject 프로토콜을 채용해야함
+class SharedList: ObservableObject {
+    var title = ""
+    
+    // Published 속성이 하나라도 있어야 업데이트됨
+    @Published var list = [String]()
+}
 
 struct ObservableList: View {
-   @State private var value: String = ""
-   
-   
-   var body: some View {
-      VStack {
-         
-         HStack {
-            TextField("Input", text: $value)
-               .textFieldStyle(RoundedBorderTextFieldStyle())
-               .padding()
+    // State는 SwiftUI가 관리함
+    @State private var value: String = ""
+    
+    // ObservedObject는 내가 데이터를 직접관리함
+    @ObservedObject var sharedList = SharedList()
+    
+    var body: some View {
+        VStack {
+            Text(sharedList.title)
+                .font(.largeTitle)
             
-            Button(action: {
-               
-            }, label: {
-               Text("Add To List")
-            })
-               .padding()
-         }
-        
-         
-         
-         Spacer()
-      }
-      .padding()
-   }
+            HStack {
+                TextField("Input", text: $value)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                Button(action: {
+                    sharedList.title = "Observable Object"
+                    sharedList.list.insert(value, at: 0)
+                }, label: {
+                    Text("Add To List")
+                })
+                .padding()
+            }
+            
+            List(sharedList.list, id: \.self) { item in
+                Text(item)
+            }
+            
+            Spacer()
+        }
+        .padding()
+    }
 }
 
 struct ObservableList_Previews: PreviewProvider {
-   static var previews: some View {
-      ObservableList()
-   }
+    static var previews: some View {
+        ObservableList()
+    }
 }
