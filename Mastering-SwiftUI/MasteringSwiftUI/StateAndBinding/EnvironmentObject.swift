@@ -25,40 +25,43 @@ import SwiftUI
 
 
 class SharedObjectList: ObservableObject {
-   @Published var list = [String]()
+    @Published var list = [String]()
 }
 
-
 struct View_EnvironmentObject: View {
-   @State private var value: String = ""
-   
-   
-   var body: some View {
-      VStack {
-         
-         HStack {
-            TextField("Input", text: $value)
-               .textFieldStyle(RoundedBorderTextFieldStyle())
-               .padding()
+    @State private var value: String = ""
+    @EnvironmentObject var sharedList: SharedObjectList
+    
+    var body: some View {
+        VStack {
             
-            Button(action: {
-               
-            }, label: {
-               Text("Add To List")
-            })
-               .padding()
-         }
-        
-         
-         
-         Spacer()
-      }
-      .padding()      
-   }
+            HStack {
+                TextField("Input", text: $value)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                Button(action: {
+                    self.sharedList.list.insert(self.value, at: 0)
+                    self.value = ""
+                }, label: {
+                    Text("Add To List")
+                })
+                .padding()
+            }
+            
+            List(sharedList.list, id: \.self) { item in
+                Text(item)
+            }
+            
+            Spacer()
+        }
+        .padding()
+    }
 }
 
 struct View_EnvironmentObject_Previews: PreviewProvider {
-   static var previews: some View {
-      View_EnvironmentObject()
-   }
+    static var previews: some View {
+        View_EnvironmentObject()
+            .environmentObject(SharedObjectList())
+    }
 }
