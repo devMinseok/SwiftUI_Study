@@ -24,30 +24,50 @@
 import SwiftUI
 
 struct Gesture_TapGesture: View {
-   @State private var tapCount = 0
-         
-   var body: some View {
-      VStack {
-         Text("\(tapCount)")
-            .font(.system(size: 250))
-         
-         HStack {
-            Image(systemName: "minus.circle")
-               .font(.system(size: 100))
-               .foregroundColor(.red)
-               .padding()
+    @State private var tapCount = 0
+    
+    var tapToPlus: some Gesture {
+        TapGesture()
+            .onEnded {
+                self.tapCount += 1
+            }
+    }
+    
+    var body: some View {
+        VStack {
+            Text("\(tapCount)")
+                .font(.system(size: 250))
+                .onTapGesture(count: 2) {
+                    self.tapCount = 0
+                }
+                .onTapGesture {
+                    self.tapCount += 1
+                }
             
-            Image(systemName: "plus.circle")
-               .font(.system(size: 100))
-               .foregroundColor(.blue)
-               .padding()
-         }
-      }
-   }
+            HStack {
+                Image(systemName: "minus.circle")
+                    .font(.system(size: 100))
+                    .foregroundColor(.red)
+                    .padding()
+                    .gesture(
+                        TapGesture()
+                            .onEnded {
+                                self.tapCount -= 1
+                            }
+                    )
+                
+                Image(systemName: "plus.circle")
+                    .font(.system(size: 100))
+                    .foregroundColor(.blue)
+                    .padding()
+                    .gesture(tapToPlus)
+            }
+        }
+    }
 }
 
 struct TapGesture_Previews: PreviewProvider {
-   static var previews: some View {
-      Gesture_TapGesture()
-   }
+    static var previews: some View {
+        Gesture_TapGesture()
+    }
 }
