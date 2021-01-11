@@ -24,22 +24,35 @@
 import SwiftUI
 
 struct Gesture_LongPressGesture: View {
-   @State private var showOriginal = true
-   
-   var body: some View {
-      ZStack {
-         Image("swiftui-logo")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    @State private var showOriginal = true
+    
+    var longPress: some Gesture {
+        LongPressGesture()
+            .onEnded { _ in
+                self.showOriginal.toggle()
+            }
+    }
+    
+    var body: some View {
+        ZStack {
+            Image("swiftui-logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .blur(radius: showOriginal ? 0.0 : 40.0)
+//                .onLongPressGesture {
+//                    self.showOriginal.toggle()
+//                }
+                .gesture(longPress)
+                .animation(.easeInOut)
             
-      }
-      .padding()
-   }
+        }
+        .padding()
+    }
 }
 
 struct Gesture_LongPressGesture_Previews: PreviewProvider {
-   static var previews: some View {
-      Gesture_LongPressGesture()
-   }
+    static var previews: some View {
+        Gesture_LongPressGesture()
+    }
 }
