@@ -24,16 +24,34 @@
 import SwiftUI
 
 struct Gesture_MagnificationGesture: View {
-   
-   var body: some View {
-      ZStack {
-         SwiftUILogo(width: 100, height: 100)
-      }
-   }
+    
+    @State private var finalScale: CGFloat = 1.0
+    @State private var latestScale: CGFloat = 1.0
+    
+    var magnification: some Gesture {
+        MagnificationGesture()
+            .onChanged { (scale) in
+                let delta = scale / self.latestScale
+                
+                self.latestScale = scale
+                self.finalScale *= delta
+            }
+            .onEnded { (scale) in
+                self.latestScale = 1.0
+            }
+    }
+    
+    var body: some View {
+        ZStack {
+            SwiftUILogo(width: 100, height: 100)
+                .scaleEffect(finalScale)
+                .gesture(magnification)
+        }
+    }
 }
 
 struct Gesture_MagnificationGesture_Previews: PreviewProvider {
-   static var previews: some View {
-      Gesture_MagnificationGesture()
-   }
+    static var previews: some View {
+        Gesture_MagnificationGesture()
+    }
 }
