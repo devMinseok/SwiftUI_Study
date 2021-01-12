@@ -1,4 +1,4 @@
-//
+//a
 //  Mastering SwiftUI
 //  Copyright (c) KxCoding <help@kxcoding.com>
 //
@@ -24,40 +24,45 @@
 import SwiftUI
 
 enum GestureType {
-   case rotation
-   case magnification
+    case rotation
+    case magnification
 }
 
 struct Gesture_ExclusiveGesture: View {
-   @ObservedObject var rotation = Rotation()
-   @ObservedObject var magnification = Magnification()
-   @State private var currentGestureType = GestureType.rotation
-
-   
-   var body: some View {
-      VStack {
-         VStack {
-            if currentGestureType == .rotation {
-               SwiftUILogo()
-                  .rotationEffect(rotation.finalAngle)
-                  .scaleEffect(magnification.finalScale)
-            } else {
-               SwiftUILogo()
-                  .rotationEffect(rotation.finalAngle)
-                  .scaleEffect(magnification.finalScale)
+    @ObservedObject var rotation = Rotation()
+    @ObservedObject var magnification = Magnification()
+    @State private var currentGestureType = GestureType.rotation
+    
+    var gestures: some Gesture {
+        ExclusiveGesture(rotation.gesture, magnification.gesture)
+    }
+    
+    var body: some View {
+        VStack {
+            VStack {
+                if currentGestureType == .rotation {
+                    SwiftUILogo()
+                        .rotationEffect(rotation.finalAngle)
+                        .scaleEffect(magnification.finalScale)
+                        .gesture(gestures)
+                } else {
+                    SwiftUILogo()
+                        .rotationEffect(rotation.finalAngle)
+                        .scaleEffect(magnification.finalScale)
+                        .gesture(magnification.gesture.exclusively(before: rotation.gesture))
+                }
             }
-         }
-         .frame(maxWidth: .infinity, maxHeight: .infinity)
-         
-         ExclusiveGestureMenu(currentGestureType: $currentGestureType)
-      }
-   }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            ExclusiveGestureMenu(currentGestureType: $currentGestureType)
+        }
+    }
 }
 
 struct Gesture_ExclusiveGesture_Previews: PreviewProvider {
-   static var previews: some View {
-      Gesture_ExclusiveGesture()
-   }
+    static var previews: some View {
+        Gesture_ExclusiveGesture()
+    }
 }
 
 
