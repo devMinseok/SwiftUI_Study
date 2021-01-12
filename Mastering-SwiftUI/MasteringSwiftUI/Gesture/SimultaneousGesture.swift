@@ -24,24 +24,28 @@
 import SwiftUI
 
 struct Gesture_SimultaneousGesture: View {
-   @ObservedObject var rotation = Rotation()
-   @ObservedObject var magnification = Magnification()
-   
-   
-   var body: some View {
-      VStack {
-         SwiftUILogo()
-            .rotationEffect(rotation.finalAngle)
-            .scaleEffect(magnification.finalScale)
-            .gesture(rotation.gesture)
-            .gesture(magnification.gesture)
-         
-      }
-   }
+    @ObservedObject var rotation = Rotation()
+    @ObservedObject var magnification = Magnification()
+    
+    var gesture: some Gesture {
+        SimultaneousGesture(rotation.gesture, magnification.gesture)
+    }
+    
+    var body: some View {
+        VStack {
+            SwiftUILogo()
+                .rotationEffect(rotation.finalAngle)
+                .scaleEffect(magnification.finalScale)
+                .gesture(gesture)
+//                .gesture(rotation.gesture.simultaneously(with: magnification.gesture))
+//                .gesture(magnification.gesture)
+            
+        }
+    }
 }
 
 struct Gesture_SimultaneousGesture_Previews: PreviewProvider {
-   static var previews: some View {
-      Gesture_SimultaneousGesture()
-   }
+    static var previews: some View {
+        Gesture_SimultaneousGesture()
+    }
 }
