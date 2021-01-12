@@ -24,17 +24,34 @@
 import SwiftUI
 
 struct Gesture_RotationGesture: View {
-      
-   var body: some View {
-      VStack {
-         SwiftUILogo()
-            
-      }
-   }
+    
+    @State private var finalAngle: Angle = .degrees(0)
+    @State private var latestAngle: Angle = .degrees(0)
+    
+    var rotation: some Gesture {
+        RotationGesture()
+            .onChanged { (angle) in
+                let delta = angle - self.latestAngle
+                
+                self.latestAngle = angle
+                self.finalAngle = self.finalAngle + delta
+            }
+            .onEnded { _ in
+                self.latestAngle = .degrees(0)
+            }
+    }
+    
+    var body: some View {
+        VStack {
+            SwiftUILogo()
+                .rotationEffect(finalAngle)
+                .gesture(rotation)
+        }
+    }
 }
 
 struct Gesture_RotationGesture_Previews: PreviewProvider {
-   static var previews: some View {
-      Gesture_RotationGesture()
-   }
+    static var previews: some View {
+        Gesture_RotationGesture()
+    }
 }
