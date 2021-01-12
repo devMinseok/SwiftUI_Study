@@ -24,37 +24,47 @@
 import SwiftUI
 
 struct Gesture_SequenceGesture: View {
-   @ObservedObject var longPress = LongPress()
-   @ObservedObject var drag = Drag()
-   
-   var body: some View {
-      VStack {
-         HStack {
-            Text("Long Press")
-            Image(systemName: "circle.fill")
-               .foregroundColor(longPress.activated ? Color.green : Color.gray)
+    @ObservedObject var longPress = LongPress()
+    @ObservedObject var drag = Drag()
+    
+    var sequence: some Gesture {
+        SequenceGesture(longPress.gesture, drag.gesture)
+            .onEnded { _ in
+                self.longPress.activated = false
+            }
+    }
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Long Press")
+                Image(systemName: "circle.fill")
+                    .foregroundColor(longPress.activated ? Color.green : Color.gray)
+                
+                Text("Drag")
+                Image(systemName: "circle.fill")
+                    .foregroundColor(drag.activated ? Color.green : Color.gray)
+            }
+            .padding()
             
-            Text("Drag")
-            Image(systemName: "circle.fill")
-               .foregroundColor(drag.activated ? Color.green : Color.gray)
-         }
-         .padding()
-         
-         VStack {
-            Circle()
-               .foregroundColor(.yellow)
-               .frame(width: 100, height: 100)
-               .offset(drag.currentTranslation)
-               .offset(drag.totalTranslation)
-               
-         }
-         .frame(maxWidth: .infinity, maxHeight: .infinity)
-      }
-   }
+            VStack {
+                Circle()
+                    .foregroundColor(.yellow)
+                    .frame(width: 100, height: 100)
+                    .offset(drag.currentTranslation)
+                    .offset(drag.totalTranslation)
+                    .gesture(sequence)
+//                    .gesture(longPress.gesture.sequenced(before: drag.gesture).onEnded { _ in
+//                        self.longPress.activated = false
+//                    })
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
 }
 
 struct Gesture_SequenceGesture_Previews: PreviewProvider {
-   static var previews: some View {
-      Gesture_SequenceGesture()
-   }
+    static var previews: some View {
+        Gesture_SequenceGesture()
+    }
 }
