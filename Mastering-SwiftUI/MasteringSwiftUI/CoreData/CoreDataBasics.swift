@@ -55,7 +55,15 @@ struct CoreDataBasics: View {
     }
     
     func delete(at rows: IndexSet) {
+        for index in rows {
+            context.delete(member[index])
+        }
         
+        do {
+            try self.context.save()
+        } catch {
+            print(error)
+        }
     }
     
     var body: some View {
@@ -78,12 +86,26 @@ struct CoreDataBasics: View {
             }
             .padding()
             
-            List(member) { member in
-                HStack {
-                    Text((member as MemberEntity).name!)
-                    Spacer()
-                    Text("\((member as MemberEntity).age)")
+            List {
+                ForEach(member) { member in
+                    Button(action: {
+                        self.showEditScene.toggle()
+                    }, label: {
+                        HStack {
+                            Text((member as MemberEntity).name!)
+                            Spacer()
+                            Text("\((member as MemberEntity).age)")
+                        }
+                    })
+                    .sheet(isPresented: self.$showEditScene) {
+                        EditScene(showEditScene: self.$showEditScene, member: member)
+                            .environment(\.managedObjectContext, self.context)
+                    }
                 }
+                .onDelete(perform: delete)
+//                .onDelete { indexSet in
+//                    self.delete(at: indexSet)
+//                }
             }
         }
     }

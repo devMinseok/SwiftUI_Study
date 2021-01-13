@@ -24,50 +24,59 @@
 import SwiftUI
 
 struct EditScene: View {
-   @Binding var showEditScene: Bool
-   var member: MemberEntity
-   
-   @State private var name: String = ""
-   @State private var age: String = ""
-      
-   var body: some View {
-      VStack {
-         Text("Edit Member")
-            .font(.largeTitle)
+    @Binding var showEditScene: Bool
+    var member: MemberEntity
+    
+    @State private var name: String = ""
+    @State private var age: String = ""
+    
+    @Environment(\.managedObjectContext) var context
+    
+    var body: some View {
+        VStack {
+            Text("Edit Member")
+                .font(.largeTitle)
+                .padding()
+                .padding(.bottom, 20)
+            
+            HStack {
+                VStack {
+                    TextField("Name", text: $name)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("Age", text: $age)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
+            }
             .padding()
-            .padding(.bottom, 20)
-         
-         HStack {
-            VStack {
-               TextField("Name", text: $name)
-                  .textFieldStyle(RoundedBorderTextFieldStyle())
-               
-               TextField("Age", text: $age)
-                  .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-         }
-         .padding()
-         
-         Spacer()
-         
-         Button(action: {
-            do {
-               
-               
-               self.showEditScene = false
-            } catch {
-               print(error.localizedDescription)
-            }
-         }, label: {
-            Text("Save")
-         })
-         .padding()
-      }
-   }
+            
+            Spacer()
+            
+            Button(action: {
+                do {
+                    self.member.name = self.name
+                    self.member.age = Int16(self.age) ?? 0
+                    
+                    try self.context.save()
+                    
+                    self.showEditScene = false
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }, label: {
+                Text("Save")
+            })
+            .padding()
+        }
+        .onAppear {
+            self.name = member.name ?? ""
+            self.age = "\(member.age)"
+        }
+    }
 }
 
 struct EditScene_Previews: PreviewProvider {
-   static var previews: some View {
-      EditScene(showEditScene: .constant(false), member: MemberEntity())
-   }
+    static var previews: some View {
+        EditScene(showEditScene: .constant(false), member: MemberEntity())
+    }
 }
