@@ -26,53 +26,72 @@ import CoreData
 
 
 struct CoreDataBasics: View {
-   @State private var name: String = ""
-   @State private var age: String = ""
-   @State private var showEditScene = false
-   
-   
-   func createMember() {
-      guard name.count > 0, let ageValue = Int16(age) else {
-         return
-      }
-      
-      
-      
-      name = ""
-      age = ""
-   }
-   
-   func delete(at rows: IndexSet) {
-      
-   }
-   
-   var body: some View {
-      VStack {
-         HStack {
-            VStack {
-               TextField("Name", text: $name)
-                  .textFieldStyle(RoundedBorderTextFieldStyle())
-               
-               TextField("Age", text: $age)
-                  .textFieldStyle(RoundedBorderTextFieldStyle())
+    @State private var name: String = ""
+    @State private var age: String = ""
+    @State private var showEditScene = false
+    
+    @Environment(\.managedObjectContext) var context
+    
+    @FetchRequest(entity: MemberEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \MemberEntity.name, ascending: true)])
+    var member: FetchedResults<MemberEntity>
+    
+    func createMember() {
+        guard name.count > 0, let ageValue = Int16(age) else {
+            return
+        }
+        
+        let newMember = MemberEntity(context: self.context)
+        newMember.name = name
+        newMember.age = ageValue
+        
+        do {
+            try self.context.save()
+        } catch {
+            print(error)
+        }
+        
+        name = ""
+        age = ""
+    }
+    
+    func delete(at rows: IndexSet) {
+        
+    }
+    
+    var body: some View {
+        VStack {
+            HStack {
+                VStack {
+                    TextField("Name", text: $name)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    TextField("Age", text: $age)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
+                
+                Button(action: {
+                    self.createMember()
+                }, label: {
+                    Text("Save")
+                })
+                .padding()
             }
-            
-            Button(action: {
-               self.createMember()
-            }, label: {
-               Text("Save")
-            })
             .padding()
-         }
-         .padding()
-         
-         
-      }
-   }
+            
+            List(member) { member in
+                HStack {
+                    Text((member as MemberEntity).name!)
+                    Spacer()
+                    Text("\((member as MemberEntity).age)")
+                }
+            }
+        }
+    }
 }
 
 struct CoreDataBasics_Previews: PreviewProvider {
-   static var previews: some View {
-      CoreDataBasics()
-   }
+    static var previews: some View {
+        CoreDataBasics()
+            .environment(\.managedObjectContext, CoreDataManager.shared.mainContext)
+    }
 }
